@@ -1,0 +1,18 @@
+[package]
+edition = "2021"
+name = "fluentci-demo-javascript"
+version = "0.1.0"
+description = ""
+license = "MIT"
+authors = [
+  "Tsiry Sandratraina <tsiry.sndr@fluentci.io>"
+]
+
+[lib]
+crate-type = [
+  "cdylib"
+]
+
+[dependencies]
+extism-pdk = "1.1.0"
+fluentci-pdk = "0.1.9"

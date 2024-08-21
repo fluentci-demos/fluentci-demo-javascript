@@ -1,0 +1,38 @@
+name: ci
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup FluentCI
+        uses: fluentci-io/setup-fluentci@v5
+      - name: Client Lint
+        run: |
+          fluentci run --wasm bun run lint
+        working-directory: src/client
+      - name: Server Lint
+        run: |
+          fluentci run --wasm bun run lint
+        working-directory: src/server
+      - name: 🧪 Client Unit Tests
+        run: |
+          fluentci run --wasm bun run test
+        working-directory: src/client
+        env:
+          CI: true
+          NODE_ENV: test
+      - name: 🧪 Server Unit Tests
+        run: |
+          fluentci run --wasm bun run test
+        working-directory: src/server
+        env:
+          CI: true
+          NODE_ENV: test
+      - name: 🔄 E2E Tests
+        run: |
+          cd src/client && fluentci run --wasm cypress install
+          fluentci run --wasm . e2e

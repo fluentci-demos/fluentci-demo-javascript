@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="5" failures="0" errors="0" time="4.439">
+  <testsuite name="src/api/users/users.controller.spec.ts" errors="0" failures="0" skipped="0" timestamp="2024-08-21T21:08:25" time="4.403" tests="5">
+    <testcase classname="UsersController › findAll-should return users list" name="UsersController › findAll-should return users list" time="0.004">
+    </testcase>
+    <testcase classname="UsersController › findOne-should return users list" name="UsersController › findOne-should return users list" time="0.001">
+    </testcase>
+    <testcase classname="UsersController › remove-should delete user and return emoty response" name="UsersController › remove-should delete user and return emoty response" time="0.001">
+    </testcase>
+    <testcase classname="UsersController › create-should create user and return" name="UsersController › create-should create user and return" time="0.001">
+    </testcase>
+    <testcase classname="UsersController › update-should return updated user" name="UsersController › update-should return updated user" time="0.001">
+    </testcase>
+  </testsuite>
+</testsuites>

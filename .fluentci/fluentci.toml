@@ -1,0 +1,8 @@
+[package]
+name = "fluentci-demo-javascript"
+version = "0.1.0"
+description = ""
+license = "MIT"
+authors = [
+  "Tsiry Sandratraina <tsiry.sndr@fluentci.io>"
+]
