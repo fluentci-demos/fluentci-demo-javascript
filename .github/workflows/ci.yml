@@ -14,10 +14,14 @@ jobs:
         run: |
           fluentci run --wasm bun run lint
         working-directory: src/client
+        env:
+          GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Server Lint
         run: |
           fluentci run --wasm bun run lint
         working-directory: src/server
+        env:
+          GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: 🧪 Client Unit Tests
         run: |
           fluentci run --wasm bun run test
@@ -25,6 +29,7 @@ jobs:
         env:
           CI: true
           NODE_ENV: test
+          GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: 🧪 Server Unit Tests
         run: |
           fluentci run --wasm bun run test
@@ -32,12 +37,18 @@ jobs:
         env:
           CI: true
           NODE_ENV: test
+          GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: 🔄 E2E Tests
         run: |
           cd src/client && fluentci run --wasm cypress install
           cd ../..
           fluentci run --wasm . e2e
+        env:
+          GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: 🔄 E2E Server
         run: |
           fluentci run --wasm postgres start
+          pkgx psql --host=localhost -d postgres -U `whoami` -c 'CREATE DATABASE test;'
           fluentci run --wasm . server_e2e
+        env:
+          GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
