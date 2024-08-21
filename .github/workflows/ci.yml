@@ -35,4 +35,9 @@ jobs:
       - name: 🔄 E2E Tests
         run: |
           cd src/client && fluentci run --wasm cypress install
+          cd ../..
           fluentci run --wasm . e2e
+      - name: 🔄 E2E Server
+        run: |
+          fluentci run --wasm postgres start
+          fluentci run --wasm . server_e2e

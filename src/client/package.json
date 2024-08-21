@@ -1,5 +1,5 @@
 {
-  "name": "@semaphoreci/semaphore-demo-javascript",
+  "name": "fluentci-demo-javascript",
   "version": "0.1.0",
   "license": "MIT",
   "dependencies": {
