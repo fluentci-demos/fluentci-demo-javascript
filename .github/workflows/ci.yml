@@ -40,9 +40,7 @@ jobs:
           GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: 🔄 E2E Tests
         run: |
-          cd src/client && fluentci run --wasm cypress install
-          cd ../..
-          fluentci run --wasm . e2e
+          cd src/client && fluentci run --wasm cypress install && cd ../.. && fluentci run --wasm . e2e
         env:
           GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: 🔄 E2E Server
