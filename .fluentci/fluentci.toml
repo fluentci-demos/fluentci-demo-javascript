@@ -3,6 +3,42 @@ name = "fluentci-demo-javascript"
 version = "0.1.0"
 description = ""
 license = "MIT"
-authors = [
-  "Tsiry Sandratraina <tsiry.sndr@fluentci.io>"
+authors = ["Tsiry Sandratraina <tsiry.sndr@fluentci.io>"]
+
+[[steps]]
+name = "Client lint"
+command = ["fluentci run --wasm bun run lint"]
+working_directory = "src/client"
+
+[[steps]]
+name = "Server lint"
+command = ["fluentci run --wasm bun run lint"]
+working_directory = "src/server"
+
+[[steps]]
+name = "Client Unit Tests"
+command = ["fluentci run --wasm bun run test"]
+working_directory = "src/client"
+env = ["CI=true", "NODE_ENV=test"]
+
+[[steps]]
+name = "Server Unit Tests"
+command = ["fluentci run --wasm bun run test"]
+working_directory = "src/server"
+env = ["CI=true", "NODE_ENV=test"]
+
+[[steps]]
+name = "End to End Tests"
+command = [
+  "cd src/client && fluentci run --wasm cypress install",
+  "cd ../..",
+  "fluentci run --wasm . e2e",
+]
+
+[[steps]]
+name = "End to End Tests (Server)"
+command = [
+  "fluentci run --wasm postgres start",
+  "pkgx psql ---host=localhost -d postgres -U `whoami` -c 'CREATE DATABASE test;'",
+  "fluentci run --wasm . server_e2e",
 ]
